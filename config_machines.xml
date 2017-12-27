@@ -2,15 +2,15 @@
 <!-- This is an ordered list, not all fields are required, optional fields are noted below. -->
 <config_machines version="2.0">
 <!-- MACH is the name that you will use in machine options -->
-  <machine MACH="roo2">
+  <machine MACH="prima">
 
     <!-- DESC: a text description of the machine, this field is current not used in code-->
-    <DESC>roo2</DESC>
+    <DESC>prima</DESC>
 
 	<!-- NODENAME_REGEX: a regular expression used to identify this machine
 	  it must work on compute nodes as well as login nodes, use machine option
 	  to create_test or create_newcase if this flag is not available -->
-    <NODENAME_REGEX>*roo2*</NODENAME_REGEX>
+    <NODENAME_REGEX>*prima*</NODENAME_REGEX>
 
     <!-- OS: the operating system of this machine. Passed to cppflags for
 	 compiled programs as -DVALUE  recognized are LINUX, AIX, Darwin, CNL -->
@@ -26,14 +26,14 @@
 
     <!-- CIME_OUTPUT_ROOT: Base directory for case output,
 	 the case/bld and case/run directories are written below here -->
-    <CIME_OUTPUT_ROOT>/Users/sacks/cime_output_root</CIME_OUTPUT_ROOT>
+    <CIME_OUTPUT_ROOT>/scratch</CIME_OUTPUT_ROOT>
 
     <!-- DIN_LOC_ROOT: location of the inputdata data directory
 	 inputdata is downloaded automatically on a case by case basis as
 	 long as the user has write access to this directory.   We recommend that
 	 all cime model users on a system share an inputdata directory
 	 as it can be quite large -->
-    <DIN_LOC_ROOT>/Users/sacks/cesm_inputdata</DIN_LOC_ROOT>
+    <DIN_LOC_ROOT>/CESM/inputdata</DIN_LOC_ROOT>
 
     <!-- DOUT_S_ROOT: root directory of short term archive files, short term
       archiving moves model output data out of the run directory, but
@@ -41,16 +41,16 @@
     <DOUT_S_ROOT>$CIME_OUTPUT_ROOT/archive/$CASE</DOUT_S_ROOT>
 
     <!-- BASELINE_ROOT:  Root directory for system test baseline files -->
-    <BASELINE_ROOT>/Users/sacks/cesm_baselines</BASELINE_ROOT>
+    <BASELINE_ROOT>/CESM/baselines</BASELINE_ROOT>
 
     <!-- CCSM_CPRNC: location of the cprnc tool, compares model output in testing-->
-    <CCSM_CPRNC>/Users/sacks/cime/tools/cprnc/cprnc</CCSM_CPRNC>
+    <CCSM_CPRNC>/CESM/tools/cprnc</CCSM_CPRNC>
 
     <!-- GMAKE: gnu compatible make tool, default is 'gmake' -->
     <GMAKE>make</GMAKE>
 
     <!-- GMAKE_J: optional number of threads to pass to the gmake flag -->
-    <GMAKE_J>8</GMAKE_J>
+    <GMAKE_J>2</GMAKE_J>
 
     <!-- BATCH_SYSTEM: batch system used on this machine,
       supported values are: none, cobalt, lsf, pbs, slurm -->
@@ -58,16 +58,16 @@
 
     <!-- SUPPORTED_BY: contact information for support for this system
       this field is not used in code -->
-    <SUPPORTED_BY>Bill Sacks</SUPPORTED_BY>
+    <SUPPORTED_BY>Mike Levy</SUPPORTED_BY>
 
     <!-- MAX_TASKS_PER_NODE: maximum number of threads*tasks per
 	 shared memory node on this machine,
 	 should always be >= PES_PER_NODE -->
-    <MAX_TASKS_PER_NODE>4</MAX_TASKS_PER_NODE>
+    <MAX_TASKS_PER_NODE>2</MAX_TASKS_PER_NODE>
 
     <!-- PES_PER_NODE: number of physical PES per shared node on
 	 this machine, in practice the MPI tasks per node will not exceed this value -->
-    <PES_PER_NODE>4</PES_PER_NODE>
+    <PES_PER_NODE>2</PES_PER_NODE>
 
     <!-- PROJECT_REQUIRED: Does this machine require a project to be specified to
 	 the batch system?  See PROJECT above -->
@@ -77,7 +77,7 @@
 	 are values listed in MPILIBS above, default and mpi-serial -->
     <mpirun mpilib="default">
       <!-- name of the exectuable used to launch mpi jobs -->
-      <executable>mpirun</executable>
+      <executable>mpirun -n 2</executable>
     </mpirun>
     <mpirun mpilib="mpi-serial">
       <executable></executable>
